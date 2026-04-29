@@ -1,16 +1,16 @@
-﻿namespace ArbolAVL;
+﻿namespace ArbolBinario;
 
 class Program
 {
     static void Main(string[] args)
     {
-      ArbolAVL miArbol = new ArbolAVL();
+        ArbolBinario miArbol = new ArbolBinario();
             bool salir = false;
 
             while (salir == false)
             {
                 Console.WriteLine("\n==============================");
-                Console.WriteLine("    MENÚ DEL ÁRBOL AVL");
+                Console.WriteLine("    MENÚ DEL ÁRBOL BINARIO");
                 Console.WriteLine("==============================");
                 Console.WriteLine("1. Insertar un número");
                 Console.WriteLine("2. Imprimir en Preorden");
@@ -22,7 +22,7 @@ class Program
                 string entradaOpcion = Console.ReadLine();
                 int opcion = 0;
 
-                // Intentamos convertir el texto a número de forma directa
+                // Validación directa con int.Parse y try-catch (sin funciones avanzadas)
                 try
                 {
                     opcion = int.Parse(entradaOpcion);
@@ -30,10 +30,10 @@ class Program
                 catch
                 {
                     Console.WriteLine("\nPor favor, ingresa un número válido del 1 al 5.");
-                    continue; // Detiene esta vuelta del ciclo y regresa a mostrar el menú
+                    continue; // Regresa al inicio del menú
                 }
 
-                // Usamos ifs simples en lugar de un switch complejo para mayor claridad
+                // Decisiones con ifs clásicos
                 if (opcion == 1)
                 {
                     Console.Write("Ingresa el número entero que quieres insertar: ");
@@ -41,13 +41,14 @@ class Program
                     try
                     {
                         int numeroAInsertar = int.Parse(entradaNumero);
-                        // Llamamos a la función Insertar y actualizamos la raíz
+                        
+                        // Llamamos a la función Insertar y conectamos el resultado a la Raíz
                         miArbol.Raiz = miArbol.Insertar(miArbol.Raiz, numeroAInsertar);
-                        Console.WriteLine("\nNúmero " + numeroAInsertar + " insertado y balanceado correctamente.");
+                        Console.WriteLine("\n[+] Número " + numeroAInsertar + " insertado correctamente.");
                     }
                     catch
                     {
-                        Console.WriteLine("\n[!] Error: Solo se permiten números enteros.");
+                        Console.WriteLine("\nError: Solo se permiten números enteros.");
                     }
                 }
                 else if (opcion == 2)
@@ -71,11 +72,11 @@ class Program
                 else if (opcion == 5)
                 {
                     salir = true;
-                    Console.WriteLine("\nSaliendo del programa...");
+                    Console.WriteLine("\nSaliendo del programa....");
                 }
                 else
                 {
-                    Console.WriteLine("\nOpción incorrecta. Intenta de nuevo.");
+                    Console.WriteLine("\n Opción incorrecta. Intenta de nuevo.");
                 }
             }
         }
